@@ -65,7 +65,7 @@ const Scene = () => {
       musicRef.current.play().catch(error => console.error('Error playing music:', error));
       musicRef.current.loop = true;
       musicRef.current.volume = 0.2;
-      musicRef.current.playbackRate = 0.9;
+      musicRef.current.playbackRate = 1;
       window.removeEventListener('click', playMusic);
     };
 
