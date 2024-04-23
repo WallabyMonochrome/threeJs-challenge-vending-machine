@@ -5,7 +5,6 @@ Files: cardboard.glb [4.6KB] > /Users/thib-cs/Work/Perso/project3D/threeJs-chall
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
 import {useCubeTexture, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
@@ -20,7 +19,6 @@ type GLTFResult = GLTF & {
   }
 }
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Cardboard(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/cardboard/cardboard-transformed.glb') as GLTFResult

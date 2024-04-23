@@ -5,7 +5,6 @@ Files: barrel.glb [22.69KB] > /Users/thib-cs/Work/Perso/project3D/threeJs-challe
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
 import {useCubeTexture, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
@@ -19,8 +18,6 @@ type GLTFResult = GLTF & {
     lightMetal: THREE.MeshStandardMaterial
   }
 }
-
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Barrel(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/barrel/barrel-transformed.glb') as GLTFResult

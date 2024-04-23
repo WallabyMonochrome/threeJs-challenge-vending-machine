@@ -1,4 +1,4 @@
-import React, {createRef, useCallback, useEffect, useRef, useState} from 'react';
+import  {createRef, useCallback, useEffect} from 'react';
 import {useFrame, useThree} from "@react-three/fiber";
 import {usePointToPointConstraint, useSphere} from "@react-three/cannon";
 import {useStore} from "../../store/store.ts";
@@ -27,7 +27,7 @@ const { setDisableOrbitControl }: {setDisableOrbitControl: Function} = useStore(
 }
 
 function Cursor() {
-  const { camera, viewport } = useThree();
+  const { camera } = useThree();
   const [, api] = useSphere(() => ({
     collisionFilterMask: 0,
     type: 'Kinematic',

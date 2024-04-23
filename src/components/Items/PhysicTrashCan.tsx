@@ -1,6 +1,4 @@
-import {useBox, useCylinder} from "@react-three/cannon";
-import {useDragConstraint} from "../Helpers/Drag.tsx";
-import {Cola} from "../../../public/models/cola/Cola.tsx";
+import {useBox} from "@react-three/cannon";
 import {useRef} from "react";
 
 const PhysicTrashCan = ({}: any) => {
@@ -19,9 +17,13 @@ const PhysicTrashCan = ({}: any) => {
 
   return (
     <>
+      {/*// @ts-ignore*/}
       <mesh ref={leftSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={rightSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={frontSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={topSideRef}/>
     </>
   )

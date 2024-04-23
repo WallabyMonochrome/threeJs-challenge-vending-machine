@@ -5,7 +5,6 @@ Files: can.glb [32.4KB] > /Users/thib-cs/Work/Perso/project3D/threeJs-challenge-
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
 import {useCubeTexture, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
@@ -20,10 +19,8 @@ type GLTFResult = GLTF & {
     lightMetal: THREE.MeshStandardMaterial
     blue: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
 }
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Can(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/canCustom/can-transformed.glb') as GLTFResult

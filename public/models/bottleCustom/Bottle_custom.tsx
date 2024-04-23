@@ -5,7 +5,6 @@ Files: bottle_custom.glb [9.19KB] > /Users/thib-cs/Work/Perso/project3D/threeJs-
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
 import {useCubeTexture, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
@@ -21,8 +20,6 @@ type GLTFResult = GLTF & {
     orange: THREE.MeshStandardMaterial
   }
 }
-
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function BottleCustom(props: JSX.IntrinsicElements['group']) {
   const {nodes, materials} = useGLTF('models/bottleCustom/bottle_custom-transformed.glb') as GLTFResult

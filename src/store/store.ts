@@ -8,7 +8,6 @@ import PhysicNoodle from "../components/Items/PhysicsNoodle.tsx";
 import {Noodle} from "../../public/models/noodles/Noodles.tsx";
 import PhysicCola from "../components/Items/PhysicCola.tsx";
 import {Cola} from "../../public/models/cola/Cola.tsx";
-import {useGLTF} from "@react-three/drei";
 import {CanMerge} from "../../public/models/canCustom/CanMerge.tsx";
 
 type State = {

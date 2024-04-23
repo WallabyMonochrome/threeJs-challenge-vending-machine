@@ -14,7 +14,9 @@ const PhysicBarrel = ({id, initialPosition}: any) => {
   // const bind = useDragConstraint(ref)
 
   return (
-    <mesh key={id} scale={1}  ref={ref} >
+      <mesh key={id} scale={1}
+  // @ts-ignore
+            ref={ref} >
       <Barrel position={[0,-1.3, 0]}  />
     </mesh>
   );

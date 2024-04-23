@@ -15,7 +15,9 @@ const PhysicNoodle = ({id, initialPosition}: any) => {
   const bind = useDragConstraint(ref)
 
   return (
-    <mesh key={id} scale={1}  ref={ref} {...bind}>
+    <mesh key={id} scale={1}
+      // @ts-ignore
+          ref={ref} {...bind}>
       <Noodle position={[0,-0.2, 0]}  />
     </mesh>
   );

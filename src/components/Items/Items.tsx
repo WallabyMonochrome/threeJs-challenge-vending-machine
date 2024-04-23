@@ -1,9 +1,5 @@
 import {useEffect, useState} from "react";
 import {useStore} from "../../store/store.ts";
-import PhysicBottle from "./PhysicBottle.tsx";
-import PhysicCan from "./PhysicCan.tsx";
-import PhysicNoodle from "./PhysicsNoodle.tsx";
-import PhysicCola from "./PhysicCola.tsx";
 import PhysicTrashCan from "./PhysicTrashCan.tsx";
 import PhysicWall from "./PhysicWalls.tsx";
 import PhysicTire from "./PhysicTire.tsx";
@@ -43,9 +39,9 @@ const Items = () => {
 
   ]
 
-  function calculateCentroid(points) {
-    const sum = points.reduce((acc, val) => [acc[0] + val[0], acc[1] + val[1], acc[2] + val[2]], [0, 0, 0]);
-    return sum.map(s => s / points.length);
+  function calculateCentroid(points: any) {
+    const sum = points.reduce((acc: any, val: any) => [acc[0] + val[0], acc[1] + val[1], acc[2] + val[2]], [0, 0, 0]);
+    return sum.map((s: any) => s / points.length);
   }
 
   function rotateY(point: any, angle: any, centroid: any) {
@@ -84,9 +80,6 @@ const Items = () => {
     <>
       <PhysicTrashCan/>
       <PhysicWall/>
-      {/*<PhysicBottle initialPosition={[2, 2,3]} />*/}
-      {/*<PhysicCola initialPosition={[2, 2,3]} />*/}
-      {/*<PhysicNoodle initialPosition={[2, 2,3]} />*/}
       {baseTiresPosition.map((pos: number[], key) => (
         <PhysicTire key={key} initialPosition={pos}/>
       ))}

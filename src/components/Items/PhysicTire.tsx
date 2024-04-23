@@ -1,6 +1,4 @@
 import {useCylinder} from "@react-three/cannon";
-import {useDragConstraint} from "../Helpers/Drag.tsx";
-import {Noodle} from "../../../public/models/noodles/Noodles.tsx";
 import {Tire} from "../../../public/models/tire/Tire.tsx";
 
 const PhysicTire = ({id, initialPosition}: any) => {
@@ -16,7 +14,9 @@ const PhysicTire = ({id, initialPosition}: any) => {
   // const bind = useDragConstraint(ref)
 
   return (
-    <mesh key={id} scale={2}  ref={ref} >
+    <mesh key={id} scale={2}
+      // @ts-ignore
+          ref={ref} >
       <Tire position={[0,-0.2, 0]}  />
     </mesh>
   );

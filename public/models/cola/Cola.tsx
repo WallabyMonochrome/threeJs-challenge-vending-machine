@@ -5,10 +5,8 @@ Files: cola.glb [29.18KB] > /Users/thib-cs/Work/Perso/project3D/threeJs-challeng
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
 import {useCubeTexture, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import envMapPath from "../../../public/envmap/cityNight"
 type GLTFResult = GLTF & {
   nodes: {
     Circle004: THREE.Mesh
@@ -22,7 +20,6 @@ type GLTFResult = GLTF & {
   }
 }
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Cola(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/cola/cola-transformed.glb') as GLTFResult

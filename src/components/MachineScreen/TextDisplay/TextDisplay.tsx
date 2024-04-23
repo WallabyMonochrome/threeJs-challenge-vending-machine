@@ -1,10 +1,8 @@
-import {Plane, Text, Image, useTexture} from "@react-three/drei";
+import {Plane, useTexture} from "@react-three/drei";
 import {ShaderMaterial, SRGBColorSpace} from "three";
 import vertexScreen from "../../../shaders/screen/vertex.glsl";
 import fragmentScreen from "../../../shaders/screen/fragment.glsl";
 import {useFrame} from "@react-three/fiber";
-
-const bebas: any = import('../../../../public/fonts/Bebas_Neue/BebasNeue-Regular.ttf')
 
 const TextDisplay = () => {
   const texture = useTexture("machineMascotte_v1.3.png"); // Load the texture
@@ -23,7 +21,7 @@ const TextDisplay = () => {
   };
 
   const shaderScreen: ShaderMaterial = createShaderScreen();
-  useFrame(({clock}: any, delta) => {
+  useFrame(({clock}: any, ) => {
     shaderScreen.uniforms.uTime.value = clock.getElapsedTime();
   });
   return (<>

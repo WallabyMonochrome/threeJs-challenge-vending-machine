@@ -5,7 +5,6 @@ Files: tire.glb [21.41KB] > /Users/thib-cs/Work/Perso/project3D/threeJs-challeng
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
 import {useCubeTexture, useGLTF} from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
@@ -18,7 +17,6 @@ type GLTFResult = GLTF & {
   }
 }
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
 
 export function Tire(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('models/tire/tire-transformed.glb') as GLTFResult

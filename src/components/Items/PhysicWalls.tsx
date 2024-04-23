@@ -1,6 +1,4 @@
-import {useBox, useCylinder, usePlane} from "@react-three/cannon";
-import {useDragConstraint} from "../Helpers/Drag.tsx";
-import {Cola} from "../../../public/models/cola/Cola.tsx";
+import {useBox, usePlane} from "@react-three/cannon";
 
 const PhysicWall = ({}: any) => {
   const [frontSideRef] = usePlane(() => ({position: [-0, 0,-2],   rotation: [Math.PI * 2, 0, 0],}));
@@ -14,13 +12,22 @@ const PhysicWall = ({}: any) => {
 
   return (
     <>
+      {/*// @ts-ignore*/}
       <mesh ref={frontSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={leftSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={rightSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={backSideRef}/>
+      {/*// @ts-ignore*/}
       <mesh ref={floorA}/>
+      {/*// @ts-ignore*/}
       <mesh ref={floorB}/>
+      {/*// @ts-ignore*/}
       <mesh ref={streetLamp}/>
+      {/*// @ts-ignore*/}
+      <mesh ref={streetSign}/>
     </>
   )
     ;

@@ -1,4 +1,4 @@
-import {useBox, useCylinder} from "@react-three/cannon";
+import {useBox} from "@react-three/cannon";
 import {Cardboard} from "../../../public/models/cardboard/Cardboard.tsx";
 
 const PhysicCardboard = ({id, initialPosition}: any) => {
@@ -14,7 +14,9 @@ const PhysicCardboard = ({id, initialPosition}: any) => {
   // const bind = useDragConstraint(ref)
 
   return (
-    <mesh key={id} scale={0.8}  ref={ref} >
+    <mesh key={id} scale={0.8}
+      // @ts-ignore
+          ref={ref} >
       <Cardboard position={[0,-0.6, 0]}  />
     </mesh>
   );

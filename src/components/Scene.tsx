@@ -1,20 +1,18 @@
 import {Canvas} from '@react-three/fiber';
-import {
-  Box,
-  Center, Environment, Html, Loader, Mask, OrbitControls, PerspectiveCamera, ScreenQuad, useGLTF, useTexture,
+import {Loader, OrbitControls, PerspectiveCamera, useGLTF, useTexture,
 } from "@react-three/drei";
 
 import Items from "./Items/Items.tsx";
 import {Cursor} from "./Helpers/Drag.tsx";
-import {Debug, Physics, usePlane} from '@react-three/cannon'
+import { Physics} from '@react-three/cannon'
 import {useStore} from "../store/store.ts";
 import Machine from "./Machine.tsx";
 import {SRGBColorSpace} from "three";
 import {Suspense, useEffect, useRef} from "react";
 import {Bloom, EffectComposer, ToneMapping} from '@react-three/postprocessing';
-import {BlurPass, Resizer, BlendFunction, KernelSize, Resolution} from 'postprocessing'
+import { BlendFunction, KernelSize, Resolution} from 'postprocessing'
 
-const Street = ({props}: any) => {
+const Street = () => {
   const streetTexture = useTexture("bakingT.png"); // Load the texture
 
   streetTexture.flipY = false;

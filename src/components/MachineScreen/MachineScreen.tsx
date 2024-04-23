@@ -1,4 +1,4 @@
-import {Environment, PerspectiveCamera, Plane, RenderTexture, Text, useGLTF} from "@react-three/drei";
+import { PerspectiveCamera, RenderTexture} from "@react-three/drei";
 import ItemDisplay from "./ItemDisplay/ItemDisplay.tsx";
 import TextDisplay from "./TextDisplay/TextDisplay.tsx";
 import {useRef} from "react";

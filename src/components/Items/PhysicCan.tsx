@@ -15,7 +15,9 @@ const PhysicCan = ({id, initialPosition}: any) => {
   const bind = useDragConstraint(ref)
 
   return (
-    <mesh key={id} scale={1}  ref={ref} {...bind}>
+    <mesh key={id} scale={1}
+      // @ts-ignore
+          ref={ref} {...bind}>
       <Can position={[0,-0.18, 0]}  />
     </mesh>
   );

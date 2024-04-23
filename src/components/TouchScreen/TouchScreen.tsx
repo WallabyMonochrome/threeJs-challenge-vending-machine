@@ -1,6 +1,5 @@
 import {Html} from "@react-three/drei";
 import Start from "./FlowScreen/Start.tsx";
-import styles from "./style.module.scss"
 import SelectionItem from "./FlowScreen/SelectionItem.tsx";
 import { useStore } from '../../store/store.ts';
 

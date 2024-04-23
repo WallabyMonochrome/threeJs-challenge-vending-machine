@@ -6,7 +6,7 @@ const PhysicCola = ({id, initialPosition}: any) => {
   const [ref] = useCylinder(() => ({
     mass: 1,
     position: initialPosition,
-    rotation:[Math.PI / 2, 0, Math.PI / 2],
+    rotation: [Math.PI / 2, 0, Math.PI / 2],
     args: [0.2, 0.2, 0.75, 8],
     material: {
       friction: 0.1,
@@ -15,8 +15,10 @@ const PhysicCola = ({id, initialPosition}: any) => {
   const bind = useDragConstraint(ref)
 
   return (
-    <mesh key={id} scale={1}  ref={ref} {...bind}>
-      <Cola position={[0,-0.4, 0]}  />
+    <mesh key={id} scale={1}
+      // @ts-ignore
+          ref={ref} {...bind}>
+      <Cola position={[0, -0.4, 0]}/>
     </mesh>
   );
 }
