@@ -1,0 +1,64 @@
+.screenContainer {
+  width: 830px;
+  height: 750px;
+  color: white;
+  .textDisplay {
+    letter-spacing: 10px;
+    height: 100%;
+    font-size: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .column {
+      justify-content: flex-end;
+    }
+    .middleText {
+      display: flex;
+    }
+
+    .topText {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+    .topButton {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 72px;
+    }
+    .bottomButton {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 42px;
+      margin-bottom: 64px;
+    }
+
+  }
+  .screenSelection {
+    letter-spacing: 10px;
+    height: 100%;
+    font-size: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes moveScanLines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.scanLinesAnimated {
+  background: linear-gradient(rgba(0, 0, 0, 0.7) 10px, transparent 20px),  radial-gradient(circle, #1d404d, #3b5d94);
+  background-size: 100% 30px, cover;
+  animation: moveScanLines 40s linear infinite;
+}
