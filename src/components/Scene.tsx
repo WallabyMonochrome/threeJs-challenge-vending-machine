@@ -5,7 +5,7 @@ import {
 
 import Items from "./Items/Items.tsx";
 import {Cursor} from "./Helpers/Drag.tsx";
-import {Debug, Physics} from '@react-three/cannon'
+import { Physics} from '@react-three/cannon'
 import {useStore} from "../store/store.ts";
 import Machine from "./Machine.tsx";
 import {SRGBColorSpace} from "three";
