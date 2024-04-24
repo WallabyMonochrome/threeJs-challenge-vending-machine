@@ -7,7 +7,8 @@ const Tooltip = ({position, children, resetComponent}: any) => {
 
   // Styles for the tooltip container
   const containerStyle: any = {
-    position: "absolute",
+    zIndex: 9999999,
+    position: "fixed",
     left: 20,
     top: 20,
     color: 'white',
@@ -30,7 +31,6 @@ const Tooltip = ({position, children, resetComponent}: any) => {
   };
 
   return (
-    <Html zIndexRange={[-100, 200]} position={position}>
       <div style={containerStyle}>
         {!minimized && children}
         <div style={{display: "flex", gap:"16px"}}>
@@ -43,7 +43,6 @@ const Tooltip = ({position, children, resetComponent}: any) => {
           </CyberButtonUI>
         </div>
       </div>
-    </Html>
   );
 };
 

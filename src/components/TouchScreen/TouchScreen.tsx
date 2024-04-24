@@ -7,7 +7,7 @@ const TouchScreen = () => {
   const { isMachineStarted } = useStore();
 
   return (<>
-      <Html occlude={"blending"} distanceFactor={0.59} transform>
+      <Html key={"az"} occlude={"blending"} distanceFactor={0.59} transform>
         {isMachineStarted &&  <SelectionItem />}
         {!isMachineStarted &&  <Start />}
       </Html>

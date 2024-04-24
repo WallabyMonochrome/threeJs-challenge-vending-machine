@@ -14,6 +14,7 @@ import {Bloom, EffectComposer, ToneMapping} from '@react-three/postprocessing';
 import {BlendFunction, KernelSize, Resolution} from 'postprocessing'
 import Tooltip from './Helpers/Tooltip.tsx';
 import CyberButtonUI from "./CyberButtonUI/CyberButtonUI.tsx";
+import {Perf} from "r3f-perf";
 
 
 const Street = () => {
@@ -79,6 +80,7 @@ const Scene = () => {
     };
   }, []);
   return (<>
+
     <Canvas style={{width: "100vw", height: "100vh"}} shadows>
       <Suspense fallback={null}>
         <PerspectiveCamera
@@ -109,7 +111,7 @@ const Scene = () => {
         </EffectComposer>
         <Physics>
 
-          {/*<Perf/>*/}
+          <Perf/>
           {/*<Debug color="black">*/}
           <OrbitControls enabled={!disableOrbitControl}/>
           <Machine/>
@@ -118,18 +120,19 @@ const Scene = () => {
           <Items key={resetKey}/>
           <ambientLight intensity={2}></ambientLight>
           <Street/>
-          <Tooltip position={[10, 0]} resetComponent={<CyberButtonUI onClick={() => {
-            resetItem();
-            setResetKey(resetKey + 1);
-          }}>Reset</CyberButtonUI>}>
-            <div>
-              <div >Use the Z/W and S key to adjust the item height.</div>
-            </div>
-          </Tooltip>
+
           {/*</Debug>*/}
         </Physics>
       </Suspense>
     </Canvas>
+    <Tooltip  resetComponent={<CyberButtonUI onClick={() => {
+      resetItem();
+      setResetKey(resetKey + 1);
+    }}>Reset</CyberButtonUI>}>
+      <div>
+        <div >Use the Z/W and S key to adjust the item height.</div>
+      </div>
+    </Tooltip>
     <Loader/>
   </>)
 }
