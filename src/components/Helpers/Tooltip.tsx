@@ -1,8 +1,7 @@
 import {useState} from 'react';
-import {Html} from '@react-three/drei';
 import CyberButtonUI from "../CyberButtonUI/CyberButtonUI.tsx";
 
-const Tooltip = ({position, children, resetComponent}: any) => {
+const Tooltip = ({ children, resetComponent}: any) => {
   const [minimized, setMinimized] = useState(false);
 
   // Styles for the tooltip container
