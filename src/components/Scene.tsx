@@ -5,7 +5,7 @@ import {
 
 import Items from "./Items/Items.tsx";
 import {Cursor} from "./Helpers/Drag.tsx";
-import {Physics} from '@react-three/cannon'
+import {Debug, Physics} from '@react-three/cannon'
 import {useStore} from "../store/store.ts";
 import Machine from "./Machine.tsx";
 import {SRGBColorSpace} from "three";
@@ -113,7 +113,13 @@ const Scene = () => {
 
           <Perf/>
           {/*<Debug color="black">*/}
-          <OrbitControls enabled={!disableOrbitControl}/>
+          <OrbitControls
+            enabled={!disableOrbitControl}
+            maxAzimuthAngle={Math.PI / 3}  // Limits rotation to 45 degrees to the right
+            minAzimuthAngle={-Math.PI / 3} // Limits rotation to 45 degrees to the left
+            maxPolarAngle={Math.PI / 2.2}    // Prevents the camera from dipping below the horizon
+            minPolarAngle={Math.PI / 4.5}    // Prevents the camera from going too high
+          />
           <Machine/>
           <Cursor/>
           {/*<Environment preset={"forest"} />*/}
