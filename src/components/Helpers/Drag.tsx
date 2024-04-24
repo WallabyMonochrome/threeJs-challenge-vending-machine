@@ -1,4 +1,4 @@
-import  {createRef, useCallback, useEffect} from 'react';
+import {createRef, useCallback, useEffect, useState} from 'react';
 import {useFrame, useThree} from "@react-three/fiber";
 import {usePointToPointConstraint, useSphere} from "@react-three/cannon";
 import {useStore} from "../../store/store.ts";
@@ -35,6 +35,24 @@ function Cursor() {
     args: [0.5],
   }), cursorRef);
 
+  const [moveAmountY, setMoveAmountY] = useState(3.2); // Initial Y position using useState
+
+  useEffect(() => {
+    const handleKeyDown = (event: any) => {
+      if (event.code === 'KeyW') {
+        setMoveAmountY(prevY => Math.min(prevY + 0.3, 4));
+      } else if (event.code === 'KeyS') {
+        setMoveAmountY(prevY => Math.max(prevY - 0.3, 0.5)); // Decrease Y position
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return useFrame((state) => {
     // Get the 2D mouse position in normalized device coordinates
     const { x, y } = state.mouse;
@@ -52,7 +70,7 @@ function Cursor() {
     let constrainedX = Math.min(12, pos.x);
     constrainedX = Math.max(-11, constrainedX);
     // Update the sphere position
-    api.position.set(constrainedX, 3.2, constrainedZ);
+    api.position.set(constrainedX, moveAmountY, constrainedZ);
   });
 }
 

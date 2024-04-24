@@ -19,7 +19,7 @@ void main()
     );
     pictureUv.x += 0.28;
     vec4 textureImage = texture(uTexture, pictureUv);
-    color = textureImage.xyz * 0.3;
+    color = textureImage.xyz * 0.5;
     color = mix(vec3(0.), color, textureImage.a);
 
     float scanLine = sin(vUv.y * scanLineFrequency + uTime);

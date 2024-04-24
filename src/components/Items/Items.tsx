@@ -30,12 +30,12 @@ const Items = () => {
     [6, 2, 3], [6.2, 3, 3], [5.8, 4, 3], [6, 5, 3]
   ];
   const baseBarrelsPosition = [
-    [-6, 2, 7.6], [-8, 2, 7.4], [-7, 5, 7.4]
+    [-8, 2, 7.6]
   ]
   let baseCardboardsPosition = [
-    [6, 2, 8], [8, 2, 8], [4, 2, 8],
-    [7, 4, 8], [5, 4, 8],
-    [6, 6, 8], [6, 8, 8]
+    [6 - 3, 3, 10], [8 - 3, 2, 10], [4-3, 2, 10],
+    [7 - 3, 4, 10], [5 - 3, 4, 10],
+    [6 - 3, 6, 10], [6 - 3, 8, 10]
 
   ]
 
@@ -75,7 +75,6 @@ const Items = () => {
   baseCardboardsPosition = baseCardboardsPosition.map(point => rotateY(point, angle, centroid));
 
 
-
   return (
     <>
       <PhysicTrashCan/>
@@ -86,9 +85,9 @@ const Items = () => {
       {baseBarrelsPosition.map((pos: number[], key) => (
         <PhysicBarrel key={key} initialPosition={pos}/>
       ))}
-        {baseCardboardsPosition.map((pos: number[], key) => (
-          <PhysicCardboard key={key} initialPosition={pos}/>
-        ))}
+      {baseCardboardsPosition.map((pos: number[], key) => (
+        <PhysicCardboard key={key} initialPosition={pos}/>
+      ))}
       {bottles}
     </>
   );

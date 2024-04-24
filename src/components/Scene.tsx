@@ -1,16 +1,21 @@
 import {Canvas} from '@react-three/fiber';
-import {Loader, OrbitControls, PerspectiveCamera, useGLTF, useTexture,
+import {
+  Loader, OrbitControls, PerspectiveCamera, useGLTF, useTexture,
 } from "@react-three/drei";
+import {Perf} from 'r3f-perf';
 
 import Items from "./Items/Items.tsx";
 import {Cursor} from "./Helpers/Drag.tsx";
-import { Physics} from '@react-three/cannon'
+import {Physics} from '@react-three/cannon'
 import {useStore} from "../store/store.ts";
 import Machine from "./Machine.tsx";
 import {SRGBColorSpace} from "three";
-import {Suspense, useEffect, useRef} from "react";
+import {Suspense, useEffect, useRef, useState} from "react";
 import {Bloom, EffectComposer, ToneMapping} from '@react-three/postprocessing';
-import { BlendFunction, KernelSize, Resolution} from 'postprocessing'
+import {BlendFunction, KernelSize, Resolution} from 'postprocessing'
+import Tooltip from './Helpers/Tooltip.tsx';
+import CyberButtonUI from "./CyberButtonUI/CyberButtonUI.tsx";
+
 
 const Street = () => {
   const streetTexture = useTexture("bakingT.png"); // Load the texture
@@ -55,7 +60,8 @@ const Street = () => {
 
 
 const Scene = () => {
-  const {disableOrbitControl}: { disableOrbitControl: boolean } = useStore();
+  const {disableOrbitControl, resetItem}: { disableOrbitControl: boolean, resetItem: Function } = useStore();
+  const [resetKey, setResetKey] = useState(0);
   const musicRef = useRef(new Audio('sound/bg-music.mp3')); // Path to your audio file
 
   useEffect(() => {
@@ -77,40 +83,50 @@ const Scene = () => {
     <Canvas style={{width: "100vw", height: "100vh"}} shadows>
       <Suspense fallback={null}>
         <PerspectiveCamera
-          makeDefault // Makes this the default camera for the scene
-          position={[0, 6, 20]} // Set the position of the camera
+          makeDefault
+          position={[0, 8, 20]} // Set the position of the camera
           fov={50} // Field of view
         />
         <EffectComposer>
-        <Bloom
-          intensity={1.5} // The bloom intensity.
-          blurPass={undefined} // A blur pass.
-          kernelSize={KernelSize.LARGE} // blur kernel size
-          luminanceThreshold={0.8} // luminance threshold. Raise this value to mask out darker elements in the scene.
-          luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
-          mipmapBlur={false} // Enables or disables mipmap blur.
-          resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
-          resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
-        />
+          <Bloom
+            intensity={1.5} // The bloom intensity.
+            blurPass={undefined} // A blur pass.
+            kernelSize={KernelSize.LARGE} // blur kernel size
+            luminanceThreshold={0.8} // luminance threshold. Raise this value to mask out darker elements in the scene.
+            luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
+            mipmapBlur={false} // Enables or disables mipmap blur.
+            resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
+            resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
+          />
           <ToneMapping
             blendFunction={BlendFunction.NORMAL} // blend mode
             adaptive={true} // toggle adaptive luminance map usage
             resolution={256} // texture resolution of the luminance map
-            middleGrey={0.7} // middle grey factor
+            middleGrey={0.8} // middle grey factor
             maxLuminance={10.0} // maximum luminance
             averageLuminance={1.6} // average luminance
             adaptationRate={1.0} // luminance adaptation rate
           />
         </EffectComposer>
         <Physics>
+
+          {/*<Perf/>*/}
           {/*<Debug color="black">*/}
           <OrbitControls enabled={!disableOrbitControl}/>
           <Machine/>
           <Cursor/>
           {/*<Environment preset={"forest"} />*/}
-          <Items/>
+          <Items key={resetKey}/>
           <ambientLight intensity={2}></ambientLight>
           <Street/>
+          <Tooltip position={[10, 0]} resetComponent={<CyberButtonUI onClick={() => {
+            resetItem();
+            setResetKey(resetKey + 1);
+          }}>Reset</CyberButtonUI>}>
+            <div>
+              <div >Use the Z/W and S key to adjust the item height.</div>
+            </div>
+          </Tooltip>
           {/*</Debug>*/}
         </Physics>
       </Suspense>

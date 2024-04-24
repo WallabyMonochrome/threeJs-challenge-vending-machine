@@ -22,8 +22,7 @@ const ItemDisplay = () => {
   const {title, lineA, lineB, size} = getCurrentItem();
 
 
-  let color = new Color("#e9ff32");
-  // let color = new Color("#eb154b");
+  let color = new Color("#FF21E9");
   color = color.multiplyScalar(1.5);
   return (
     <>
@@ -35,8 +34,8 @@ const ItemDisplay = () => {
           // @ts-ignore
               anchorY="middle" rotation={[Math.PI, 0, 0]} font={suspend(bebas).default} fontSize={0.4}
               color={color}
-              outlineBlur={'30%'}
-              outlineOpacity={0.2}
+              outlineBlur={'60%'}
+              outlineOpacity={0.35}
               outlineColor={color}
 
         >
@@ -52,8 +51,8 @@ const ItemDisplay = () => {
           // @ts-ignore
               anchorY="middle" rotation={[Math.PI, 0, 0]} font={suspend(bebas).default} fontSize={0.4}
               color={color}
-              outlineBlur={'30%'}
-              outlineOpacity={0.2}
+              outlineBlur={'60%'}
+              outlineOpacity={0.35}
               outlineColor={color}
 
 
@@ -64,8 +63,8 @@ const ItemDisplay = () => {
           // @ts-ignore
               anchorY="middle" rotation={[Math.PI, 0, 0]} font={suspend(bebas).default} fontSize={0.4}
               color={color}
-              outlineBlur={'30%'}
-              outlineOpacity={0.2}
+              outlineBlur={'60%'}
+              outlineOpacity={0.35}
               outlineColor={color}
         >
           {lineB}

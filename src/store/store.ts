@@ -24,6 +24,7 @@ type State = {
   nextItem: () => void;
   previousItem: () => void;
   getCurrentItem: () => any;
+  resetItem: () => void;
 };
 
 
@@ -48,6 +49,9 @@ export const useStore = create<State>((set, get) => ({
   },
   buyItem: () => set((state: any) => ({
     purchasedItems: [...state.purchasedItems, state.currentItem],
+  })),
+  resetItem: () => set(() => ({
+    purchasedItems: [],
   })),
 
   logOff: () => set({
