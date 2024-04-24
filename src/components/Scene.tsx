@@ -2,7 +2,6 @@ import {Canvas} from '@react-three/fiber';
 import {
   Loader, OrbitControls, PerspectiveCamera, useGLTF, useTexture,
 } from "@react-three/drei";
-import {Perf} from 'r3f-perf';
 
 import Items from "./Items/Items.tsx";
 import {Cursor} from "./Helpers/Drag.tsx";

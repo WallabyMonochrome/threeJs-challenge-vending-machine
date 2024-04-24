@@ -6,7 +6,7 @@ const Tooltip = ({position, children, resetComponent}: any) => {
   const [minimized, setMinimized] = useState(false);
 
   // Styles for the tooltip container
-  const containerStyle = {
+  const containerStyle: any = {
     position: "absolute",
     left: 20,
     top: 20,
