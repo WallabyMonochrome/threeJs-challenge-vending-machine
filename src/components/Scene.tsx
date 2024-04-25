@@ -1,4 +1,4 @@
-import {Canvas} from '@react-three/fiber';
+import {Canvas, useThree} from '@react-three/fiber';
 import {
   Loader, OrbitControls, PerspectiveCamera, useGLTF, useTexture,
 } from "@react-three/drei";
@@ -8,13 +8,13 @@ import {Cursor} from "./Helpers/Drag.tsx";
 import { Physics} from '@react-three/cannon'
 import {useStore} from "../store/store.ts";
 import Machine from "./Machine.tsx";
-import {SRGBColorSpace} from "three";
+import {SRGBColorSpace, Vector3} from "three";
 import {Suspense, useEffect, useRef, useState} from "react";
 import {Bloom, EffectComposer, ToneMapping} from '@react-three/postprocessing';
 import {BlendFunction, KernelSize, Resolution} from 'postprocessing'
 import Tooltip from './Helpers/Tooltip.tsx';
 import CyberButtonUI from "./CyberButtonUI/CyberButtonUI.tsx";
-import {Perf} from "r3f-perf";
+// import {Perf} from "r3f-perf";
 
 
 const Street = () => {
@@ -55,14 +55,54 @@ const Street = () => {
     <mesh geometry={nodes.panelLight.geometry}>
       <meshStandardMaterial color={"#FF4354"} emissive={"#FF4354"} emissiveIntensity={2.5}/>
     </mesh>
+    {/** @ts-ignore **/}
+    <mesh geometry={nodes.trashSignNeon.geometry}>
+      <meshStandardMaterial color={"#FF4354"} emissive={"#FF4354"} emissiveIntensity={2.5}/>
+    </mesh>
+    {/** @ts-ignore **/}
+    <mesh geometry={nodes.trashSignNeon.geometry}>
+      <meshStandardMaterial color={"#FF4354"} emissive={"#FF4354"} emissiveIntensity={2.5}/>
+    </mesh>
+    {/** @ts-ignore **/}
+    <mesh geometry={nodes.arrows.geometry}>
+      <meshStandardMaterial color={"#08B3FF"} emissive={"#08B3FF"} emissiveIntensity={1.5}/>
+    </mesh>
   </>
 }
 
+const OrbitControlsCustom = ({disableOrbitControl}: {disableOrbitControl: boolean}) => {
+  const { camera } = useThree();
+  const orbitRef: any = useRef(null);
+  useEffect(() => {
+    if (orbitRef.current) {
+      // Set the new target to focus on
+      const newTarget = new Vector3(0, 2.5, 0);
+      orbitRef.current.target = newTarget;
+      // Update the camera to look at the new target
+      camera.lookAt(newTarget);
+      // Update controls to apply the new target
+      orbitRef.current.update();
+    }
+  }, [camera]);
+  return (
+    <OrbitControls
+    ref={orbitRef}
+    makeDefault={true}
+    enabled={!disableOrbitControl}
+    maxAzimuthAngle={Math.PI / 3}  // Limits rotation to 45 degrees to the right
+    minAzimuthAngle={-Math.PI / 3} // Limits rotation to 45 degrees to the left
+    maxPolarAngle={Math.PI / 2.2}    // Prevents the camera from dipping below the horizon
+    minPolarAngle={Math.PI / 4.5}    // Prevents the camera from going too high
+    maxDistance={40}
+    minDistance={10}
+  />)
+}
 
 const Scene = () => {
   const {disableOrbitControl, resetItem}: { disableOrbitControl: boolean, resetItem: Function } = useStore();
   const [resetKey, setResetKey] = useState(0);
-  const musicRef = useRef(new Audio('sound/bg-music.mp3')); // Path to your audio file
+  const musicRef = useRef(new Audio('sound/bg-music.mp3'));
+
 
   useEffect(() => {
     const playMusic = () => {
@@ -111,18 +151,11 @@ const Scene = () => {
         </EffectComposer>
         <Physics>
 
-          <Perf/>
+          {/*<Perf/>*/}
           {/*<Debug color="black">*/}
-          <OrbitControls
-            enabled={!disableOrbitControl}
-            maxAzimuthAngle={Math.PI / 3}  // Limits rotation to 45 degrees to the right
-            minAzimuthAngle={-Math.PI / 3} // Limits rotation to 45 degrees to the left
-            maxPolarAngle={Math.PI / 2.2}    // Prevents the camera from dipping below the horizon
-            minPolarAngle={Math.PI / 4.5}    // Prevents the camera from going too high
-          />
+          <OrbitControlsCustom disableOrbitControl={disableOrbitControl} />
           <Machine/>
           <Cursor/>
-          {/*<Environment preset={"forest"} />*/}
           <Items key={resetKey}/>
           <ambientLight intensity={2}></ambientLight>
           <Street/>

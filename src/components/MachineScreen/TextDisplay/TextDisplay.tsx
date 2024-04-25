@@ -3,9 +3,12 @@ import {ShaderMaterial, SRGBColorSpace} from "three";
 import vertexScreen from "../../../shaders/screen/vertex.glsl";
 import fragmentScreen from "../../../shaders/screen/fragment.glsl";
 import {useFrame} from "@react-three/fiber";
+import {useStore} from "../../../store/store.ts";
+import {useEffect} from "react";
 
 const TextDisplay = () => {
-  const texture = useTexture("machineMascotte_v1.3.png"); // Load the texture
+  const texture = useTexture("machineMascotte_v2.png"); // Load the texture
+  const {purchasedItems} = useStore();
   texture.flipY = false;
   texture.colorSpace = SRGBColorSpace;
   const createShaderScreen = () => {
@@ -20,8 +23,16 @@ const TextDisplay = () => {
     });
   };
 
+
   const shaderScreen: ShaderMaterial = createShaderScreen();
-  useFrame(({clock}: any, ) => {
+
+  useEffect(() => {
+    if (shaderScreen && purchasedItems.length) {
+      setTimeout(() => shaderScreen.uniforms.uTexture.value = texture, 1000);
+    }
+  }, [purchasedItems]);
+
+  useFrame(({clock}: any,) => {
     shaderScreen.uniforms.uTime.value = clock.getElapsedTime();
   });
   return (<>

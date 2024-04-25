@@ -7,7 +7,7 @@ import PhysicBarrel from "./PhysicBarrel.tsx";
 import PhysicCardboard from "./PhysicsCardboard.tsx";
 
 const generateRandomSpawnLocation = () => {
-  return Math.random() * 2 - 1;
+  return Math.random() * 1.5 - 1;
 };
 
 const SPAWN_LOCATION: any = [0, 1.3, 0]

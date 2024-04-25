@@ -12,7 +12,6 @@ const ItemDisplay = () => {
   const {getCurrentItem} = useStore();
   const itemRef: any = useRef();
 
-
   useFrame((_state: any, delta) => {
     if (itemRef.current) {
       itemRef.current.rotation.y += delta; // Increase the Z rotation based on the time elapsed since the last frame
